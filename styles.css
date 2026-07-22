@@ -288,6 +288,7 @@ nav.links a:hover::after{
 .b4{ background: linear-gradient(160deg, #e7c98a, #b4874a); }
 .b5{ background: linear-gradient(160deg, #d1495a, #8e2a28); }
 .b6{ background: linear-gradient(160deg, #7a2230, #4c1620); }
+.b7{ background: linear-gradient(160deg, #f2d6b9 0 25%, #b52f42 26% 58%, #d8a75e 59%); }
 .doce h3{ font-size: 20px; font-weight:600; display:flex; justify-content:space-between; align-items:baseline; gap: 10px; }
 .price{ font-family:'Caveat', cursive; color: var(--jam); font-size: 22px; font-weight:700; white-space:nowrap; }
 .doce p{ margin: 10px 0 0; font-size: 14.5px; line-height:1.6; color: #5b5346; }
