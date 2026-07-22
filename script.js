@@ -1,3 +1,31 @@
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function setupScrollReveal() {
+  if (prefersReducedMotion) return;
+
+  const stampTargets = document.querySelectorAll('.section-head h2, .story h2');
+  const riseTargets = [
+    ...document.querySelectorAll('.section-head, .story p, .story .sign, .foot-inner > div'),
+    ...document.querySelectorAll('.menu-grid .doce'),
+  ];
+
+  stampTargets.forEach((el) => el.classList.add('reveal-stamp'));
+  riseTargets.forEach((el) => el.classList.add('reveal'));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  [...stampTargets, ...riseTargets].forEach((el) => observer.observe(el));
+}
+
+setupScrollReveal();
+
 const burgerBtn = document.getElementById('burgerBtn');
 const navLinks = document.getElementById('navLinks');
 const form = document.getElementById('orderForm');
@@ -5,6 +33,7 @@ const msg = document.getElementById('formMsg');
 const productModal = document.getElementById('productModal');
 const productClose = document.getElementById('productClose');
 const productImage = document.getElementById('productImage');
+const productPhoto = document.getElementById('productPhoto');
 const productImageCaption = document.getElementById('productImageCaption');
 const productTitle = document.getElementById('productTitle');
 const productPrice = document.getElementById('productPrice');
@@ -54,6 +83,10 @@ const products = {
     color: '#b32b3d',
     accent: '#f4d5b6',
     description: 'A base crocante de biscoito recebe um creme de confeiteiro aveludado e uma camada generosa de geleia de morango caseira. Tudo é finalizado com muito chantilly fresquinho e decorado com os melhores morangos.',
+    images: [
+      { src: 'images/tortamorango_logo.jpeg', label: 'Torta de Morango decorada' },
+      { src: 'images/tortamorango_sabores.jpeg', label: 'Camadas da Torta de Morango' },
+    ],
   },
   trufa: {
     title: 'Trufa de Framboesa',
@@ -73,10 +106,40 @@ navLinks.querySelectorAll('a').forEach((link) => {
 });
 document.querySelector('.nav-cta').addEventListener('click', () => navLinks.classList.remove('open'));
 
+function configureGallery() {
+  const photos = activeProduct.images ?? [];
+  const hasPhotos = photos.length > 0;
+
+  productImage.classList.toggle('has-photo', hasPhotos);
+  productThumbs.forEach((thumb, index) => {
+    const photo = photos[index];
+    thumb.hidden = hasPhotos && !photo;
+    thumb.style.backgroundImage = photo ? `url("${photo.src}")` : '';
+    thumb.style.removeProperty('background-color');
+    if (photo) thumb.setAttribute('aria-label', `Ver ${photo.label.toLowerCase()}`);
+  });
+}
+
 function selectShot(shot) {
+  const photo = activeProduct.images?.[Number(shot)];
+
   productImage.dataset.shot = shot;
-  productImageCaption.textContent = `Imagem ${Number(shot) + 1}`;
   productThumbs.forEach((thumb) => thumb.classList.toggle('is-active', thumb.dataset.shot === shot));
+
+  if (photo) {
+    productPhoto.src = photo.src;
+    productPhoto.alt = photo.label;
+    productPhoto.hidden = false;
+    productImage.setAttribute('aria-label', photo.label);
+    productImageCaption.textContent = photo.label;
+    return;
+  }
+
+  productPhoto.hidden = true;
+  productPhoto.removeAttribute('src');
+  productPhoto.alt = '';
+  productImage.setAttribute('aria-label', 'Imagem ilustrativa do doce selecionado');
+  productImageCaption.textContent = `Imagem ${Number(shot) + 1}`;
 }
 
 function openProduct(productId, trigger) {
@@ -88,6 +151,7 @@ function openProduct(productId, trigger) {
   productImage.style.setProperty('--product-color', activeProduct.color);
   productImage.style.setProperty('--product-accent', activeProduct.accent);
   productThumbs.forEach((thumb) => thumb.style.setProperty('--thumb-color', activeProduct.color));
+  configureGallery();
   selectShot('0');
   productModal.classList.add('is-open');
   productModal.setAttribute('aria-hidden', 'false');
