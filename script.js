@@ -1,12 +1,5 @@
 const burgerBtn = document.getElementById('burgerBtn');
 const navLinks = document.getElementById('navLinks');
-
-burgerBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
-document.querySelector('.nav-cta').addEventListener('click', () => navLinks.classList.remove('open'));
-
 const form = document.getElementById('orderForm');
 const msg = document.getElementById('formMsg');
 const productModal = document.getElementById('productModal');
@@ -20,24 +13,75 @@ const productOrder = document.getElementById('productOrder');
 const productThumbs = document.querySelectorAll('.product-thumb');
 
 const products = {
-  brigadeiro: { title: 'Brigadeiro Trufado', price: 'R$4,50', color: '#5a321c', accent: '#e3c07d', description: 'Chocolate belga meio amargo, recheio cremoso e granulado crocante feito na casa. Uma unidade intensa, macia e feita para comer sem pressa.' },
-  beijinho: { title: 'Beijinho de Coco', price: 'R$4,50', color: '#d8c598', accent: '#fff7df', description: 'Coco fresco ralado na hora, leite condensado e um toque leve de limao siciliano para equilibrar a doçura.' },
-  'doce-leite': { title: 'Doce de Leite Queimado', price: 'R$5,00', color: '#9d5d29', accent: '#f0ca78', description: 'Doce de leite artesanal cozido devagar, com notas caramelizadas e finalizado com uma pequena pitada de flor de sal.' },
-  'bem-casado': { title: 'Bem-Casado de Geleia', price: 'R$5,50', color: '#c18c4c', accent: '#f5e2a5', description: 'Massinhas amanteigadas que abraçam uma geleia de frutas vermelhas brilhante e preparada na cozinha da Sammy.' },
-  tortinha: { title: 'Tortinha de Morango', price: 'R$9,00', color: '#b53d4b', accent: '#ffd0bf', description: 'Massa amanteigada, creme de baunilha e morangos frescos. Uma sobremesa delicada, fresca e cheia de textura.' },
-  trufa: { title: 'Trufa de Framboesa', price: 'R$6,00', color: '#6f1c2a', accent: '#ec8b9a', description: 'Ganache de chocolate meio amargo com um coraçao de framboesa. Equilibrio entre acidez frutada e chocolate intenso.' },
+  brigadeiro: {
+    title: 'Brigadeiro Trufado',
+    price: 'R$ 4,50',
+    color: '#5a321c',
+    accent: '#e3c07d',
+    description: 'Chocolate belga meio amargo, recheio cremoso e granulado crocante feito na casa. Uma unidade intensa, macia e feita para comer sem pressa.',
+  },
+  beijinho: {
+    title: 'Beijinho de Coco',
+    price: 'R$ 4,50',
+    color: '#d8c598',
+    accent: '#fff7df',
+    description: 'Coco fresco ralado na hora, leite condensado e um toque leve de limão-siciliano para equilibrar a doçura.',
+  },
+  'doce-leite': {
+    title: 'Doce de Leite Queimado',
+    price: 'R$ 5,00',
+    color: '#9d5d29',
+    accent: '#f0ca78',
+    description: 'Doce de leite artesanal cozido devagar, com notas caramelizadas e finalizado com uma pequena pitada de flor de sal.',
+  },
+  'bem-casado': {
+    title: 'Bem-casado de Geleia',
+    price: 'R$ 5,50',
+    color: '#c18c4c',
+    accent: '#f5e2a5',
+    description: 'Massas amanteigadas abraçam uma geleia de frutas vermelhas brilhante, preparada na cozinha da Sammy.',
+  },
+  tortinha: {
+    title: 'Tortinha de Morango',
+    price: 'R$ 9,00',
+    color: '#b53d4b',
+    accent: '#ffd0bf',
+    description: 'Massa amanteigada, creme de baunilha e morangos frescos. Uma sobremesa delicada, fresca e cheia de textura.',
+  },
+  'torta-morango': {
+    title: 'Torta de Morango',
+    price: 'Sob encomenda',
+    color: '#b32b3d',
+    accent: '#f4d5b6',
+    description: 'A base crocante de biscoito recebe um creme de confeiteiro aveludado e uma camada generosa de geleia de morango caseira. Tudo é finalizado com muito chantilly fresquinho e decorado com os melhores morangos.',
+  },
+  trufa: {
+    title: 'Trufa de Framboesa',
+    price: 'R$ 6,00',
+    color: '#6f1c2a',
+    accent: '#ec8b9a',
+    description: 'Ganache de chocolate meio amargo com recheio de framboesa. Equilíbrio entre acidez frutada e chocolate intenso.',
+  },
 };
 
 let activeProduct;
+let triggerElement;
+
+burgerBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+document.querySelector('.nav-cta').addEventListener('click', () => navLinks.classList.remove('open'));
 
 function selectShot(shot) {
   productImage.dataset.shot = shot;
-  productImageCaption.textContent = `Foto ${Number(shot) + 1}`;
+  productImageCaption.textContent = `Imagem ${Number(shot) + 1}`;
   productThumbs.forEach((thumb) => thumb.classList.toggle('is-active', thumb.dataset.shot === shot));
 }
 
-function openProduct(productId) {
+function openProduct(productId, trigger) {
   activeProduct = products[productId];
+  triggerElement = trigger;
   productTitle.textContent = activeProduct.title;
   productPrice.textContent = activeProduct.price;
   productDescription.textContent = activeProduct.description;
@@ -55,14 +99,15 @@ function closeProduct() {
   productModal.classList.remove('is-open');
   productModal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  triggerElement?.focus();
 }
 
 document.querySelectorAll('[data-product]').forEach((card) => {
-  card.addEventListener('click', () => openProduct(card.dataset.product));
+  card.addEventListener('click', () => openProduct(card.dataset.product, card));
   card.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      openProduct(card.dataset.product);
+      openProduct(card.dataset.product, card);
     }
   });
 });

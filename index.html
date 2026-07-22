@@ -1,199 +1,205 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sammy's Bakery & Co. â€” Doces artesanais</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Caveat:wght@500;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sammy's Bakery &amp; Co. — Doces artesanais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&amp;family=Caveat:wght@500;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header>
+    <div class="nav">
+      <a href="#" class="brand">
+        <img src="sammys-logo.png" alt="Sammy's Bakery &amp; Co.">
+        <span class="brand-name">Sammy's Bakery &amp; Co.</span>
+      </a>
+      <button class="burger" aria-label="Abrir menu" id="burgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="links" id="navLinks" aria-label="Navegação principal">
+        <a href="#" class="is-active">Início</a>
+        <a href="#doces">Cardápio <span class="nav-caret" aria-hidden="true">&#9662;</span></a>
+        <a href="#encomendas">Encomendas <span class="nav-caret" aria-hidden="true">&#9662;</span></a>
+      </nav>
+      <a href="#encomendas" class="btn nav-cta">Fazer pedido</a>
+    </div>
+  </header>
 
-<header>
-  <div class="nav">
-    <a href="#" class="brand">
-      <img src="sammys-logo.png" alt="Sammy's Bakery & Co.">
-      <span class="brand-name">Sammy's Bakery &amp; Co.</span>
-    </a>
-    <button class="burger" aria-label="Abrir menu" id="burgerBtn">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="links" id="navLinks" aria-label="Navegacao principal">
-      <a href="#" class="is-active">Inicio</a>
-      <a href="#doces">Cardapio <span class="nav-caret" aria-hidden="true">&#9662;</span></a>
-      <a href="#encomendas">Encomendas <span class="nav-caret" aria-hidden="true">&#9662;</span></a>
-    </nav>
-    <a href="#encomendas" class="btn nav-cta">Fazer pedido</a>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="logo-frame">
+        <img src="sammys-logo.png" alt="Logotipo da Sammy's Bakery &amp; Co.">
+      </div>
+      <h1>Doces que valem<br>sujar as mãos.</h1>
+      <p class="sub">Feitos à mão, em pequenas porções, todos os dias — do brigadeiro clássico à tortinha que some da mesa em dois minutos.</p>
+      <div class="cta-row">
+        <a href="#doces" class="btn btn-primary">Ver o cardápio</a>
+        <a href="#encomendas" class="btn btn-ghost">Fazer encomenda</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="doces">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Cardápio da semana</span>
+        <h2>Nossos doces</h2>
+        <p>Uma seleção pequena, renovada com frequência, porque doce bom é feito fresco — não para ficar em estoque.</p>
+      </div>
+
+      <div class="menu-grid">
+        <div class="doce scallop-card" data-product="brigadeiro" role="button" tabindex="0" aria-label="Ver detalhes do Brigadeiro Trufado">
+          <div class="blob b1"></div>
+          <h3>Brigadeiro Trufado <span class="price">R$ 4,50</span></h3>
+          <p>Chocolate belga meio amargo e granulado crocante feito na casa.</p>
+        </div>
+
+        <div class="doce scallop-card" data-product="beijinho" role="button" tabindex="0" aria-label="Ver detalhes do Beijinho de Coco">
+          <div class="blob b2"></div>
+          <h3>Beijinho de Coco <span class="price">R$ 4,50</span></h3>
+          <p>Coco fresco ralado na hora, com um toque de limão-siciliano.</p>
+        </div>
+
+        <div class="doce scallop-card" data-product="doce-leite" role="button" tabindex="0" aria-label="Ver detalhes do Doce de Leite Queimado">
+          <div class="blob b3"></div>
+          <h3>Doce de Leite Queimado <span class="price">R$ 5,00</span></h3>
+          <p>Doce de leite artesanal cozido devagar, finalizado com flor de sal.</p>
+        </div>
+
+        <div class="doce scallop-card" data-product="bem-casado" role="button" tabindex="0" aria-label="Ver detalhes do Bem-casado de Geleia">
+          <div class="blob b4"></div>
+          <h3>Bem-casado de Geleia <span class="price">R$ 5,50</span></h3>
+          <p>Geleia de frutas vermelhas feita na hora, entre massas amanteigadas.</p>
+        </div>
+
+        <div class="doce scallop-card" data-product="tortinha" role="button" tabindex="0" aria-label="Ver detalhes da Tortinha de Morango">
+          <div class="blob b5"></div>
+          <h3>Tortinha de Morango <span class="price">R$ 9,00</span></h3>
+          <p>Massa amanteigada, creme de baunilha e morangos frescos.</p>
+        </div>
+
+        <div class="doce scallop-card" data-product="torta-morango" role="button" tabindex="0" aria-label="Ver detalhes da Torta de Morango">
+          <div class="blob b7"></div>
+          <h3>Torta de Morango <span class="price">Sob encomenda</span></h3>
+          <p>Base crocante, creme de confeiteiro, geleia caseira, chantilly e morangos frescos.</p>
+        </div>
+
+        <div class="doce scallop-card" data-product="trufa" role="button" tabindex="0" aria-label="Ver detalhes da Trufa de Framboesa">
+          <div class="blob b6"></div>
+          <h3>Trufa de Framboesa <span class="price">R$ 6,00</span></h3>
+          <p>Ganache de chocolate meio amargo com recheio de framboesa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="product-modal" id="productModal" aria-hidden="true">
+    <div class="product-dialog" role="dialog" aria-modal="true" aria-labelledby="productTitle">
+      <button class="product-close" id="productClose" type="button" aria-label="Fechar detalhes">&times;</button>
+      <div class="product-gallery">
+        <div class="product-image" id="productImage" aria-label="Imagem ilustrativa do doce selecionado" role="img">
+          <span class="product-image-caption" id="productImageCaption">Imagem 1</span>
+        </div>
+        <div class="product-thumbs" aria-label="Mais imagens do doce">
+          <button class="product-thumb is-active" type="button" data-shot="0" aria-label="Ver imagem 1"></button>
+          <button class="product-thumb" type="button" data-shot="1" aria-label="Ver imagem 2"></button>
+          <button class="product-thumb" type="button" data-shot="2" aria-label="Ver imagem 3"></button>
+        </div>
+      </div>
+      <div class="product-info">
+        <span class="eyebrow">Detalhes do doce</span>
+        <h2 id="productTitle"></h2>
+        <p class="product-price" id="productPrice"></p>
+        <p id="productDescription"></p>
+        <div class="product-note">
+          <span>Feito por encomenda</span>
+          <span>•</span>
+          <span>Produzido artesanalmente</span>
+        </div>
+        <button class="btn btn-primary product-order" id="productOrder" type="button">Pedir este doce</button>
+      </div>
+    </div>
   </div>
-</header>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="logo-frame">
-      <img src="sammys-logo.png" alt="Sammy's Bakery & Co. â€” logo">
+  <section class="story" id="historia">
+    <span class="eyebrow">Nossa história</span>
+    <h2>De uma cozinha pequena para a mesa de muita gente</h2>
+    <p>Começou com uma receita de família e uma bandeja para a vizinhança. Hoje, cada doce que sai daqui continua sendo feito à mão, em pequenos lotes, do jeito de sempre — mas agora chega às festas, às mesas de trabalho e àquele momento em que só um docinho resolve.</p>
+    <p class="sign">— Sammy</p>
+  </section>
+
+  <section class="section" id="encomendas">
+    <div class="order-wrap">
+      <div class="section-head" style="margin-bottom: 36px;">
+        <span class="eyebrow">Encomendas</span>
+        <h2>Vamos combinar seu pedido?</h2>
+        <p>Preencha os dados abaixo e a gente confirma quantidades, sabores e prazo diretamente com você.</p>
+      </div>
+
+      <form id="orderForm">
+        <div class="full">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" required placeholder="Seu nome">
+        </div>
+        <div>
+          <label for="whatsapp">WhatsApp</label>
+          <input type="tel" id="whatsapp" required placeholder="(15) 90000-0000">
+        </div>
+        <div>
+          <label for="data">Data do evento</label>
+          <input type="date" id="data">
+        </div>
+        <div class="full">
+          <label for="doce">Doce de interesse</label>
+          <select id="doce">
+            <option>Brigadeiro Trufado</option>
+            <option>Beijinho de Coco</option>
+            <option>Doce de Leite Queimado</option>
+            <option>Bem-casado de Geleia</option>
+            <option>Tortinha de Morango</option>
+            <option>Torta de Morango</option>
+            <option>Trufa de Framboesa</option>
+            <option>Ainda não sei — quero sugestões</option>
+          </select>
+        </div>
+        <div class="full">
+          <label for="mensagem">Detalhes do pedido</label>
+          <textarea id="mensagem" placeholder="Quantidade, ocasião e restrições alimentares..."></textarea>
+        </div>
+        <div class="full submit-row">
+          <button type="submit" class="btn btn-primary">Enviar pedido</button>
+          <span class="form-msg" id="formMsg">Recebemos seu pedido — entraremos em contato pelo WhatsApp em breve!</span>
+        </div>
+      </form>
     </div>
-    <h1>Doces que valem<br>sujar as mÃ£os.</h1>
-    <p class="sub">Feitos Ã  mÃ£o, em pequenas porÃ§Ãµes, todos os dias â€” do brigadeiro clÃ¡ssico Ã  tortinha que some em dois minutos de mesa.</p>
-    <div class="cta-row">
-      <a href="#doces" class="btn btn-primary">Ver o cardÃ¡pio</a>
-      <a href="#encomendas" class="btn btn-ghost">Fazer encomenda</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="doces">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">CardÃ¡pio da semana</span>
-      <h2>Nossos doces</h2>
-      <p>Uma seleÃ§Ã£o pequena e trocada com frequÃªncia â€” porque doce bom se faz fresco, nÃ£o em estoque.</p>
-    </div>
-
-    <div class="menu-grid">
-      <div class="doce scallop-card" data-product="brigadeiro" role="button" tabindex="0" aria-label="Ver detalhes do Brigadeiro Trufado">
-        <div class="blob b1"></div>
-        <h3>Brigadeiro Trufado <span class="price">R$4,50</span></h3>
-        <p>Chocolate belga meio amargo, granulado crocante feito na casa.</p>
-      </div>
-
-      <div class="doce scallop-card" data-product="beijinho" role="button" tabindex="0" aria-label="Ver detalhes do Beijinho de Coco">
-        <div class="blob b2"></div>
-        <h3>Beijinho de Coco <span class="price">R$4,50</span></h3>
-        <p>Coco fresco ralado na hora, com um toque de limÃ£o siciliano.</p>
-      </div>
-
-      <div class="doce scallop-card" data-product="doce-leite" role="button" tabindex="0" aria-label="Ver detalhes do Doce de Leite Queimado">
-        <div class="blob b3"></div>
-        <h3>Doce de Leite Queimado <span class="price">R$5,00</span></h3>
-        <p>Doce de leite artesanal cozido devagar, finalizado com flor de sal.</p>
-      </div>
-
-      <div class="doce scallop-card" data-product="bem-casado" role="button" tabindex="0" aria-label="Ver detalhes do Bem-Casado de Geleia">
-        <div class="blob b4"></div>
-        <h3>Bem-Casado de Geleia <span class="price">R$5,50</span></h3>
-        <p>Geleia de frutas vermelhas feita na hora, entre massinhas amanteigadas.</p>
-      </div>
-
-      <div class="doce scallop-card" data-product="tortinha" role="button" tabindex="0" aria-label="Ver detalhes da Tortinha de Morango">
-        <div class="blob b5"></div>
-        <h3>Tortinha de Morango <span class="price">R$9,00</span></h3>
-        <p>Massa amanteigada, creme baunilha e morangos frescos por cima.</p>
-      </div>
-
-      <div class="doce scallop-card" data-product="trufa" role="button" tabindex="0" aria-label="Ver detalhes da Trufa de Framboesa">
-        <div class="blob b6"></div>
-        <h3>Trufa de Framboesa <span class="price">R$6,00</span></h3>
-        <p>Ganache de chocolate meio amargo com coraÃ§Ã£o de framboesa.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="product-modal" id="productModal" aria-hidden="true">
-  <div class="product-dialog" role="dialog" aria-modal="true" aria-labelledby="productTitle">
-    <button class="product-close" id="productClose" type="button" aria-label="Fechar detalhes">&times;</button>
-    <div class="product-gallery">
-      <div class="product-image" id="productImage" aria-label="Foto do doce selecionado" role="img">
-        <span class="product-image-caption" id="productImageCaption">Foto 1</span>
-      </div>
-      <div class="product-thumbs" aria-label="Mais fotos do doce">
-        <button class="product-thumb is-active" type="button" data-shot="0" aria-label="Ver foto 1"></button>
-        <button class="product-thumb" type="button" data-shot="1" aria-label="Ver foto 2"></button>
-        <button class="product-thumb" type="button" data-shot="2" aria-label="Ver foto 3"></button>
-      </div>
-    </div>
-    <div class="product-info">
-      <span class="eyebrow">Detalhes do doce</span>
-      <h2 id="productTitle"></h2>
-      <p class="product-price" id="productPrice"></p>
-      <p id="productDescription"></p>
-      <div class="product-note">
-        <span>Feito por encomenda</span>
-        <span>•</span>
-        <span>Produzido artesanalmente</span>
-      </div>
-      <button class="btn btn-primary product-order" id="productOrder" type="button">Pedir este doce</button>
-    </div>
-  </div>
-</div>
-
-<section class="story" id="historia">
-  <span class="eyebrow">Nossa histÃ³ria</span>
-  <h2>De uma cozinha pequena pra mesa de muita gente</h2>
-  <p>ComeÃ§ou com a receita de famÃ­lia e uma bandeja pra vizinhanÃ§a. Hoje, cada doce que sai daqui ainda Ã© feito Ã  mÃ£o, em lotes pequenos, do jeito que sempre foi â€” sÃ³ que agora chega pra festa, pra mesa de trabalho e pra aquele momento em que sÃ³ um docinho resolve.</p>
-  <p class="sign">â€” Sammy</p>
-</section>
-
-<section class="section" id="encomendas">
-  <div class="order-wrap">
-    <div class="section-head" style="margin-bottom:36px;">
-      <span class="eyebrow">Encomendas</span>
-      <h2>Vamos combinar seu pedido?</h2>
-      <p>Preencha os dados abaixo e a gente confirma quantidade, sabores e prazo direto com vocÃª.</p>
-    </div>
-
-    <form id="orderForm">
-      <div class="full">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" required placeholder="Seu nome">
+  <footer id="contato">
+    <div class="foot-scallop"></div>
+    <div class="foot-inner">
+      <div>
+        <h3>Sammy's Bakery &amp; Co.</h3>
+        <p>Doces artesanais, feitos por encomenda.<br>Sorocaba, SP</p>
       </div>
       <div>
-        <label for="whatsapp">WhatsApp</label>
-        <input type="tel" id="whatsapp" required placeholder="(15) 90000-0000">
+        <h3>Fale com a gente</h3>
+        <p>
+          <a href="#">WhatsApp: (15) 90000-0000</a><br>
+          <a href="#">contato@sammysbakery.co</a><br>
+          <a href="#">@sammysbakery</a>
+        </p>
       </div>
       <div>
-        <label for="data">Data do evento</label>
-        <input type="date" id="data">
+        <h3>Horário</h3>
+        <p>Terça a sábado — das 9h às 18h<br>Encomendas com 48 horas de antecedência</p>
       </div>
-      <div class="full">
-        <label for="doce">Doce de interesse</label>
-        <select id="doce">
-          <option>Brigadeiro Trufado</option>
-          <option>Beijinho de Coco</option>
-          <option>Doce de Leite Queimado</option>
-          <option>Bem-Casado de Geleia</option>
-          <option>Tortinha de Morango</option>
-          <option>Trufa de Framboesa</option>
-          <option>Ainda nÃ£o sei â€” quero sugestÃµes</option>
-        </select>
-      </div>
-      <div class="full">
-        <label for="mensagem">Detalhes do pedido</label>
-        <textarea id="mensagem" placeholder="Quantidade, ocasiÃ£o, restriÃ§Ãµes alimentares..."></textarea>
-      </div>
-      <div class="full submit-row">
-        <button type="submit" class="btn btn-primary">Enviar pedido</button>
-        <span class="form-msg" id="formMsg">Recebemos seu pedido â€” te chamamos no WhatsApp em breve!</span>
-      </div>
-    </form>
-  </div>
-</section>
+    </div>
+    <div class="foot-bottom">© 2026 Sammy's Bakery &amp; Co. Todos os direitos reservados.</div>
+  </footer>
 
-<footer id="contato">
-  <div class="foot-scallop"></div>
-  <div class="foot-inner">
-    <div>
-      <h3>Sammy's Bakery & Co.</h3>
-      <p>Doces artesanais, feitos por encomenda.<br>Sorocaba, SP</p>
-    </div>
-    <div>
-      <h3>Fale com a gente</h3>
-      <p>
-        <a href="#">WhatsApp: (15) 90000-0000</a><br>
-        <a href="#">contato@sammysbakery.co</a><br>
-        <a href="#">@sammysbakery</a>
-      </p>
-    </div>
-    <div>
-      <h3>HorÃ¡rio</h3>
-      <p>Ter a SÃ¡b â€” 9h Ã s 18h<br>Encomendas com 48h de antecedÃªncia</p>
-    </div>
-  </div>
-  <div class="foot-bottom">Â© 2026 Sammy's Bakery & Co. Todos os direitos reservados.</div>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
