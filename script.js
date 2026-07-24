@@ -290,9 +290,36 @@ document.querySelectorAll('[data-add]').forEach((button) => {
   });
 });
 
+function buildQuickWhatsAppMessage() {
+  const entries = cartEntries();
+  const itensTexto = entries
+    .map(({ qty, product }) => {
+      const linha = product.priceValue == null ? 'a combinar' : formatBRL(product.priceValue * qty);
+      return `• ${qty}x ${product.title} — ${linha}`;
+    })
+    .join('\n');
+  const totalTexto = `${formatBRL(cartTotal())}${hasCombinarItem() ? ' + itens a combinar' : ''}`;
+
+  return [
+    'Olá, Sammy! Gostaria de fazer uma encomenda 🧁',
+    '',
+    '*Itens da cestinha:*',
+    itensTexto,
+    '',
+    `*Total:* ${totalTexto}`,
+    '',
+    'Enviado pelo site da Sammy\'s Bakery & Co.',
+  ].join('\n');
+}
+
 cestinhaFinish.addEventListener('click', () => {
+  const message = buildQuickWhatsAppMessage();
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank', 'noopener');
   closeCestinha();
-  document.getElementById('encomendas').scrollIntoView({ behavior: 'smooth' });
+  cart = {};
+  saveCart();
+  renderCestinha();
 });
 
 renderCestinha();
