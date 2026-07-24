@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sammy's Bakery &amp; Co. — Doces artesanais</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#33472C">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&amp;family=Caveat:wght@500;700&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
@@ -55,42 +61,49 @@
           <div class="blob b1"></div>
           <h3>Brigadeiro Trufado <span class="price">R$ 4,50</span></h3>
           <p>Chocolate belga meio amargo e granulado crocante feito na casa.</p>
+          <button class="doce-add" type="button" data-add="brigadeiro">+ Adicionar à cestinha</button>
         </div>
 
         <div class="doce scallop-card" data-product="beijinho" role="button" tabindex="0" aria-label="Ver detalhes do Beijinho de Coco">
           <div class="blob b2"></div>
           <h3>Beijinho de Coco <span class="price">R$ 4,50</span></h3>
           <p>Coco fresco ralado na hora, com um toque de limão-siciliano.</p>
+          <button class="doce-add" type="button" data-add="beijinho">+ Adicionar à cestinha</button>
         </div>
 
         <div class="doce scallop-card" data-product="doce-leite" role="button" tabindex="0" aria-label="Ver detalhes do Doce de Leite Queimado">
           <div class="blob b3"></div>
           <h3>Doce de Leite Queimado <span class="price">R$ 5,00</span></h3>
           <p>Doce de leite artesanal cozido devagar, finalizado com flor de sal.</p>
+          <button class="doce-add" type="button" data-add="doce-leite">+ Adicionar à cestinha</button>
         </div>
 
         <div class="doce scallop-card" data-product="bem-casado" role="button" tabindex="0" aria-label="Ver detalhes do Bem-casado de Geleia">
           <div class="blob b4"></div>
           <h3>Bem-casado de Geleia <span class="price">R$ 5,50</span></h3>
           <p>Geleia de frutas vermelhas feita na hora, entre massas amanteigadas.</p>
+          <button class="doce-add" type="button" data-add="bem-casado">+ Adicionar à cestinha</button>
         </div>
 
         <div class="doce scallop-card" data-product="tortinha" role="button" tabindex="0" aria-label="Ver detalhes da Tortinha de Morango">
           <div class="blob b5"></div>
           <h3>Tortinha de Morango <span class="price">R$ 9,00</span></h3>
           <p>Massa amanteigada, creme de baunilha e morangos frescos.</p>
+          <button class="doce-add" type="button" data-add="tortinha">+ Adicionar à cestinha</button>
         </div>
 
         <div class="doce scallop-card" data-product="torta-morango" role="button" tabindex="0" aria-label="Ver detalhes da Torta de Morango">
           <div class="blob b7"></div>
           <h3>Torta de Morango <span class="price">Sob encomenda</span></h3>
           <p>Base crocante, creme de confeiteiro, geleia caseira, chantilly e morangos frescos.</p>
+          <button class="doce-add" type="button" data-add="torta-morango">+ Adicionar à cestinha</button>
         </div>
 
         <div class="doce scallop-card" data-product="trufa" role="button" tabindex="0" aria-label="Ver detalhes da Trufa de Framboesa">
           <div class="blob b6"></div>
           <h3>Trufa de Framboesa <span class="price">R$ 6,00</span></h3>
           <p>Ganache de chocolate meio amargo com recheio de framboesa.</p>
+          <button class="doce-add" type="button" data-add="trufa">+ Adicionar à cestinha</button>
         </div>
       </div>
     </div>
@@ -120,7 +133,7 @@
           <span>•</span>
           <span>Produzido artesanalmente</span>
         </div>
-        <button class="btn btn-primary product-order" id="productOrder" type="button">Pedir este doce</button>
+        <button class="btn btn-primary product-order" id="productOrder" type="button">Adicionar à cestinha</button>
       </div>
     </div>
   </div>
@@ -154,25 +167,18 @@
           <input type="date" id="data">
         </div>
         <div class="full">
-          <label for="doce">Doce de interesse</label>
-          <select id="doce">
-            <option>Brigadeiro Trufado</option>
-            <option>Beijinho de Coco</option>
-            <option>Doce de Leite Queimado</option>
-            <option>Bem-casado de Geleia</option>
-            <option>Tortinha de Morango</option>
-            <option>Torta de Morango</option>
-            <option>Trufa de Framboesa</option>
-            <option>Ainda não sei — quero sugestões</option>
-          </select>
+          <label>Resumo do pedido</label>
+          <div class="order-summary" id="orderSummary" aria-live="polite">
+            <p class="order-summary-empty" id="orderSummaryEmpty">Sua cestinha está vazia — volte ao cardápio e adicione um docinho antes de enviar. 🧺</p>
+          </div>
         </div>
         <div class="full">
           <label for="mensagem">Detalhes do pedido</label>
           <textarea id="mensagem" placeholder="Quantidade, ocasião e restrições alimentares..."></textarea>
         </div>
         <div class="full submit-row">
-          <button type="submit" class="btn btn-primary">Enviar pedido</button>
-          <span class="form-msg" id="formMsg">Recebemos seu pedido — entraremos em contato pelo WhatsApp em breve!</span>
+          <button type="submit" class="btn btn-primary">Enviar pedido pelo WhatsApp</button>
+          <span class="form-msg" id="formMsg" aria-live="polite">Abrindo o WhatsApp com os detalhes do seu pedido...</span>
         </div>
       </form>
     </div>
@@ -188,9 +194,9 @@
       <div>
         <h3>Fale com a gente</h3>
         <p>
-          <a href="#">WhatsApp: (15) 99119-3238</a><br>
+          <a href="#">WhatsApp: (15) 90000-0000</a><br>
           <a href="#">contato@sammysbakery.co</a><br>
-          <a href="#">@sammysbakery.br</a>
+          <a href="#">@sammysbakery</a>
         </p>
       </div>
       <div>
@@ -200,6 +206,29 @@
     </div>
     <div class="foot-bottom">© 2026 Sammy's Bakery &amp; Co. Todos os direitos reservados.</div>
   </footer>
+
+  <button class="cestinha-toggle" id="cestinhaToggle" type="button" aria-label="Abrir cestinha" aria-expanded="false" aria-controls="cestinhaPanel">
+    <span class="cestinha-icon" aria-hidden="true">🧺</span>
+    <span class="cestinha-count" id="cestinhaCount" hidden>0</span>
+  </button>
+
+  <div class="cestinha-overlay" id="cestinhaOverlay"></div>
+  <aside class="cestinha-panel" id="cestinhaPanel" aria-hidden="true" aria-labelledby="cestinhaTitle">
+    <div class="cestinha-head">
+      <h2 id="cestinhaTitle">Sua cestinha 🧺</h2>
+      <button class="cestinha-close" id="cestinhaClose" type="button" aria-label="Fechar cestinha">&times;</button>
+    </div>
+    <div class="cestinha-items" id="cestinhaItems"></div>
+    <p class="cestinha-empty" id="cestinhaEmpty">Sua cestinha está vazia.<br>Adicione um docinho no cardápio! 🧁</p>
+    <div class="cestinha-footer" id="cestinhaFooter" hidden>
+      <p class="cestinha-note" id="cestinhaNote" hidden>* Itens sob encomenda têm o valor combinado à parte.</p>
+      <div class="cestinha-total">
+        <span>Total</span>
+        <strong id="cestinhaTotal">R$ 0,00</strong>
+      </div>
+      <button class="btn btn-primary cestinha-finish" id="cestinhaFinish" type="button">Finalizar pedido</button>
+    </div>
+  </aside>
 
   <script src="script.js"></script>
 </body>
