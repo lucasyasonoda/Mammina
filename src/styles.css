@@ -1,0 +1,302 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-paper-soft: var(--paper-soft);
+  --color-wine: var(--wine);
+  --color-wine-dark: var(--wine-dark);
+  --color-wine-soft: var(--wine-soft);
+  --color-blush: var(--blush);
+  --color-blush-soft: var(--blush-soft);
+  --color-sky: var(--sky);
+  --color-sky-soft: var(--sky-soft);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+  --font-script: var(--font-script);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Mammina palette — sampled from the brand marks (wine red on cream)
+     and the moodboard references (wine / blue / blush / cream). */
+  --paper: oklch(0.97 0.014 75); /* #F7EFE3 cream */
+  --paper-soft: oklch(0.99 0.006 80); /* #FBF8F1 */
+  --ink: oklch(0.24 0.03 30); /* warm near-black */
+  --wine: oklch(0.37 0.13 25); /* #7A1F1D deep wine red, from the logo */
+  --wine-dark: oklch(0.22 0.1 20); /* #4D0011-ish, deepest wine */
+  --wine-soft: oklch(0.55 0.12 25); /* lighter wine for hovers */
+  --blush: oklch(0.72 0.07 15); /* #C2858C dusty blush pink */
+  --blush-soft: oklch(0.87 0.035 20); /* pale blush background */
+  --sky: oklch(0.8 0.08 250); /* #8EB9FF light blue accent */
+  --sky-soft: oklch(0.9 0.04 250);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper-soft);
+  --card-foreground: var(--ink);
+  --popover: var(--paper-soft);
+  --popover-foreground: var(--ink);
+  --primary: var(--wine);
+  --primary-foreground: var(--paper-soft);
+  --secondary: var(--blush-soft);
+  --secondary-foreground: var(--wine-dark);
+  --muted: oklch(0.94 0.012 75);
+  --muted-foreground: oklch(0.45 0.02 40);
+  --accent: var(--sky);
+  --accent-foreground: var(--wine-dark);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: var(--paper-soft);
+  --border: oklch(0.85 0.02 60);
+  --input: oklch(0.9 0.015 60);
+  --ring: var(--wine);
+
+  --font-serif: "Fraunces", "Playfair Display", Georgia, serif;
+  --font-sans: "Work Sans", system-ui, -apple-system, sans-serif;
+  --font-script: "Caveat", cursive;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+    color: var(--wine-dark);
+  }
+  .font-script {
+    font-family: var(--font-script);
+    color: var(--wine);
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--sky);
+    -webkit-text-stroke: 0.2px var(--wine-dark);
+  }
+}
+
+@layer components {
+  /* ---------- Doily / scalloped signature motif, kept from the original design ---------- */
+  .scallop-card {
+    --bg: var(--paper-soft);
+    position: relative;
+    background: var(--bg);
+    box-shadow: 0 18px 40px -20px rgba(122, 31, 29, 0.35);
+  }
+  .scallop-card::before,
+  .scallop-card::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    height: 11px;
+    background-image: radial-gradient(circle at 9px 4px, var(--bg) 8.5px, transparent 9px);
+    background-size: 18px 18px;
+    background-position: 0 0;
+  }
+  .scallop-card::before {
+    top: -10px;
+  }
+  .scallop-card::after {
+    bottom: -10px;
+    transform: scaleY(-1);
+  }
+
+  .foot-scallop {
+    height: 20px;
+    background-image: radial-gradient(circle at 12px 0, var(--paper) 11px, transparent 11.5px);
+    background-size: 24px 20px;
+    background-color: var(--wine-dark);
+  }
+
+  .nav-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 7px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 8'><path d='M0 4.5 Q5 1 10 4.5 T20 4.5 T30 4.5 T40 4.5' stroke='%238EB9FF' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>")
+      repeat-x left bottom / 20px 7px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s cubic-bezier(0.34, 1.3, 0.4, 1);
+  }
+  .nav-underline.is-active::after,
+  .nav-underline:hover::after {
+    transform: scaleX(1);
+  }
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-hero-rise {
+    animation: hero-rise 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+  }
+
+  @keyframes breathe {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.015);
+    }
+  }
+  .animate-breathe {
+    animation: breathe 6s ease-in-out 1.2s infinite;
+  }
+
+  @keyframes sign-write {
+    from {
+      opacity: 0;
+      letter-spacing: 0.12em;
+      transform: translateX(-6px);
+    }
+    to {
+      opacity: 1;
+      letter-spacing: normal;
+      transform: translateX(0);
+    }
+  }
+  .animate-sign-write {
+    animation: sign-write 0.7s ease-out both;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer components {
+  /* ---------- Candy stripes, used for bold editorial section backgrounds ---------- */
+  .stripes-blush {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--blush) 0px,
+      var(--blush) 26px,
+      var(--paper) 26px,
+      var(--paper) 52px
+    );
+  }
+  .stripes-wine {
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--wine-dark) 0px,
+      var(--wine-dark) 26px,
+      var(--paper) 26px,
+      var(--paper) 52px
+    );
+  }
+
+  /* ---------- Postage-stamp perforated photo frame (scalloped top & bottom edge) ---------- */
+  .stamp-edge {
+    --bg: var(--paper-soft);
+    position: relative;
+    background: var(--bg);
+  }
+  .stamp-edge::before,
+  .stamp-edge::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    height: 9px;
+    background-image: radial-gradient(circle at 7px 3px, var(--bg) 6.5px, transparent 7px);
+    background-size: 14px 14px;
+    background-position: 0 0;
+  }
+  .stamp-edge::before {
+    top: -8px;
+  }
+  .stamp-edge::after {
+    bottom: -8px;
+    transform: scaleY(-1);
+  }
+
+  /* ---------- Scrolling marquee ticker ---------- */
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 22s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
